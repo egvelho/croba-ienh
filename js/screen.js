@@ -1,3 +1,5 @@
+import { Square } from "./square.js";
+
 export class Screen {
   constructor({
     element,
@@ -12,7 +14,19 @@ export class Screen {
     this.screen.style.gridTemplateRows = `repeat(${rows}, ${squareSize}px)`;
     this.screen.style.gridTemplateColumns = `repeat(${columns}, ${squareSize}px)`;
     this.screen.style.gap = `${gap}px`;
+
+    /*
+    const square = new Square({
+      element: document.createElement("div"),
+      bgColor: squareBgColor,
+      size: squareSize,
+    });
+    */
+
+    this.board = [];
   }
 
-  draw() {}
+  draw() {
+    this.board.flat().forEach((square) => square.draw(this.screen));
+  }
 }
