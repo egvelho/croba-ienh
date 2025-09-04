@@ -3,14 +3,15 @@ export class Screen {
     element,
     columns = 12,
     rows = 12,
-    squareSize,
-    squareBgColor,
+    squareSize = 24,
+    gap = 4,
+    squareBgColor = "black",
   } = {}) {
     this.screen = element;
     this.screen.style.display = "grid";
     this.screen.style.gridTemplateRows = `repeat(${rows}, ${squareSize}px)`;
     this.screen.style.gridTemplateColumns = `repeat(${columns}, ${squareSize}px)`;
-    this.screen.style.gap = "8px";
+    this.screen.style.gap = `${gap}px`;
   }
 
   draw() {}
