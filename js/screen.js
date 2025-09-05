@@ -38,4 +38,22 @@ export class Screen {
   draw() {
     this.board.flat().forEach((square) => square.draw(this.screen));
   }
+
+  async blink() {
+    const promises = this.board.flat().map(
+      (square) => () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            square.setBgColor("pink");
+            resolve();
+
+            setTimeout(() => square.resetBgColor(), 2000);
+          }, 300);
+        })
+    );
+
+    for (const promise of promises) {
+      await promise();
+    }
+  }
 }
