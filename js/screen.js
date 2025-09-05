@@ -23,7 +23,16 @@ export class Screen {
     });
     */
 
-    this.board = [];
+    this.board = new Array(rows).fill(null).map(() =>
+      new Array(columns).fill(null).map(
+        () =>
+          new Square({
+            element: document.createElement("div"),
+            bgColor: squareBgColor,
+            size: squareSize,
+          })
+      )
+    );
   }
 
   draw() {
