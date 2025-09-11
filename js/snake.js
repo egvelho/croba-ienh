@@ -38,9 +38,8 @@ export class Snake {
     }
 
     const [headRow, headColumn] = headPosition;
-    const [nextHeadRow, nextHeadColumn] = nextHeadPosition;
     this.snake.head.value = nextHeadPosition;
     this.board[headRow][headColumn].resetBgColor();
-    this.board[nextHeadRow][nextHeadColumn].setBgColor("red");
+    this.draw();
   }
 }

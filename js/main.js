@@ -6,3 +6,4 @@ const screen = new Screen({ element: screenElement, rows: 12, columns: 12 });
 const snake = new Snake({ board: screen.board });
 screen.draw();
 snake.draw();
+snake.move("right");
