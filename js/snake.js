@@ -4,7 +4,9 @@ export class Snake {
   constructor({ board, headPosition = [0, 0] }) {
     this.board = board;
     this.snake = new LinkedList();
-    this.snake.add(headPosition);
+    this.snake.add([2, 0]);
+    this.snake.add([1, 0]);
+    this.snake.add([0, 0]);
   }
 
   draw() {
