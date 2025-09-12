@@ -41,7 +41,7 @@ export class Snake {
 
     const [headRow, headColumn] = headPosition;
     this.snake.head.value = nextHeadPosition;
-    //this.board[headRow][headColumn].resetBgColor();
+    this.board[headRow][headColumn].resetBgColor();
 
     let currentNode = this.snake.head;
     while (currentNode !== null) {
