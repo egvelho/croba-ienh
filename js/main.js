@@ -20,7 +20,7 @@ window.addEventListener("keydown", (event) => {
     return;
   }
 
-  allowMove = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
+  allowMove = !["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
     event.key
   );
   switch (event.key) {
