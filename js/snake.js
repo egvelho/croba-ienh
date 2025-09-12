@@ -49,6 +49,8 @@ export class Snake {
       const currentNodePosition = structuredClone(currentNode.value);
       currentNode.value = previousNodePosition;
       previousNodePosition = currentNodePosition;
+      const [previousRow, previousColumn] = previousNodePosition;
+      this.board[previousRow][previousColumn].resetBgColor();
       currentNode = currentNode.next;
     }
 
