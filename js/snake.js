@@ -33,6 +33,7 @@ export class Snake {
         nextHeadPosition[1]--;
         break;
       case "right":
+        if (direction === "left") return;
         nextHeadPosition[1]++;
         break;
       default:
