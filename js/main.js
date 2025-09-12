@@ -11,14 +11,14 @@ snake.draw();
 
 let allowMove = true;
 function gameTick() {
+  snake.move(direction);
+  allowMove = true;
+
   const isCollision = snake.checkIsCollision();
   if (isCollision) {
     alert("Perdel mané");
     location.reload();
   }
-
-  snake.move(direction);
-  allowMove = true;
 }
 
 window.addEventListener("keydown", (event) => {

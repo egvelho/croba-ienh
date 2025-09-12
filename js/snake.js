@@ -50,6 +50,10 @@ export class Snake {
   }
 
   move(direction) {
+    if (this.checkIsCollision()) {
+      return;
+    }
+
     const headPosition = structuredClone(this.snake.head.value);
     let nextHeadPosition = structuredClone(headPosition);
     switch (direction) {
