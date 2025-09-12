@@ -43,8 +43,12 @@ export class Snake {
     this.snake.head.value = nextHeadPosition;
     this.board[headRow][headColumn].resetBgColor();
 
-    let currentNode = this.snake.head;
+    let currentNode = this.snake.head.next;
+    let previousNodePosition = structuredClone(headPosition);
     while (currentNode !== null) {
+      const currentNodePosition = structuredClone(currentNode.value);
+      currentNode.value = previousNodePosition;
+      previousNodePosition = currentNodePosition;
       currentNode = currentNode.next;
     }
 
