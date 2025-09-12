@@ -12,6 +12,10 @@ export class Snake {
   }
 
   draw() {
+    if (this.checkIsCollision()) {
+      return;
+    }
+
     let currentNode = this.snake.head;
     while (currentNode !== null) {
       const [row, column] = currentNode.value;
