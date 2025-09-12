@@ -36,7 +36,17 @@ export class Snake {
       )
     );
 
-    return isCollision;
+    const topOff = 0;
+    const bottomOff = this.board.length - 1;
+    const leftOff = 0;
+    const rightOff = this.board.at(0).length - 1;
+
+    const isWallCrash = segs.some(
+      ([row, column]) =>
+        row < leftOff || row > rightOff || column < topOff || column > bottomOff
+    );
+
+    return isCollision || isWallCrash;
   }
 
   move(direction) {
