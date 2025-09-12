@@ -9,11 +9,20 @@ let direction = "down";
 screen.draw();
 snake.draw();
 
+let allowMove = true;
 function gameTick() {
   snake.move(direction);
+  allowMove = true;
 }
 
 window.addEventListener("keydown", (event) => {
+  if (!allowMove) {
+    return;
+  }
+
+  allowMove = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
+    event.key
+  );
   switch (event.key) {
     case "ArrowUp":
       if (direction === "down") return;
