@@ -4,6 +4,8 @@ export class Snake {
   constructor({ board, headPosition = [0, 0] }) {
     this.board = board;
     this.snake = new LinkedList();
+    this.snake.add([4, 0]);
+    this.snake.add([3, 0]);
     this.snake.add([2, 0]);
     this.snake.add([1, 0]);
     this.snake.add([0, 0]);
@@ -17,6 +19,24 @@ export class Snake {
       this.board[row][column].setBgColor("red");
       currentNode = currentNode.next;
     }
+  }
+
+  checkIsCollision() {
+    let segs = [];
+    let currentNode = this.snake.head;
+    while (currentNode !== null) {
+      segs.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+
+    const isCollision = segs.some((segA, indexA) =>
+      segs.some(
+        (segB, indexB) =>
+          indexA !== indexB && segA[0] === segB[0] && segA[1] === segB[1]
+      )
+    );
+
+    return isCollision;
   }
 
   move(direction) {
