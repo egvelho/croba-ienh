@@ -74,4 +74,16 @@ export class LinkedList {
     }
     console.log(valuesToPrint);
   }
+
+  toArray() {
+    let nodes = [];
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      nodes.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+
+    return nodes;
+  }
 }

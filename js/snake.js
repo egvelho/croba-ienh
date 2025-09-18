@@ -1,9 +1,10 @@
 import { LinkedList } from "./linked-list/linked-list.js";
 
 export class Snake {
-  constructor({ board, headPosition = [0, 0] }) {
+  constructor({ board, headPosition = [0, 0], bgColor = "red" }) {
     this.board = board;
     this.snake = new LinkedList();
+    this.bgColor = bgColor;
     this.snake.add([4, 0]);
     this.snake.add([3, 0]);
     this.snake.add([2, 0]);
@@ -19,8 +20,7 @@ export class Snake {
     let currentNode = this.snake.head;
     while (currentNode !== null) {
       const [row, column] = currentNode.value;
-      console.log(row, column);
-      this.board[row][column].setBgColor("red");
+      this.board[row][column].setBgColor(this.bgColor);
       currentNode = currentNode.next;
     }
   }
@@ -41,9 +41,9 @@ export class Snake {
     );
 
     const topOff = 0;
-    const bottomOff = this.board.length - 1;
+    const bottomOff = this.board.at(0).length - 1;
     const leftOff = 0;
-    const rightOff = this.board.at(0).length - 1;
+    const rightOff = this.board.length - 1;
 
     const isWallCrash = segs.some(
       ([row, column]) =>
@@ -53,7 +53,7 @@ export class Snake {
     return isCollision || isWallCrash;
   }
 
-  move(direction) {
+  move({ direction, foodPosition, onEat }) {
     if (this.checkIsCollision()) {
       return;
     }
@@ -91,6 +91,14 @@ export class Snake {
       const [previousRow, previousColumn] = previousNodePosition;
       this.board[previousRow][previousColumn].resetBgColor();
       currentNode = currentNode.next;
+    }
+
+    if (
+      nextHeadPosition[0] === foodPosition[0] &&
+      nextHeadPosition[1] === foodPosition[1]
+    ) {
+      this.snake.add(previousNodePosition);
+      onEat();
     }
 
     this.draw();

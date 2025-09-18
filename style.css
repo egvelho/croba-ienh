@@ -1,0 +1,45 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner-container {
+  position: relative;
+}
+
+.nokia {
+  width: 300px;
+  z-index: 3;
+  position: relative;
+}
+
+.screen {
+  position: absolute;
+  top: 194px;
+  left: 52px;
+  border: solid 1px #242424;
+  z-index: 3;
+}
+
+.screen-back-layer {
+  background-color: #9bba5a;
+  width: 220px;
+  height: 180px;
+  position: absolute;
+  top: 180px;
+  left: 36px;
+  z-index: 1;
+}

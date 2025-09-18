@@ -1,22 +1,41 @@
 import { Screen } from "./screen.js";
 import { Snake } from "./snake.js";
 
-const GAME_SPEED = 200;
+const GAME_SPEED = 100;
 const screenElement = document.querySelector("#screen");
-const screen = new Screen({ element: screenElement, rows: 12, columns: 12 });
-const snake = new Snake({ board: screen.board });
+const screen = new Screen({
+  element: screenElement,
+  rows: 14,
+  columns: 19,
+  squareBgColor: "#9bba5a",
+  foodBgColor: "#242424",
+  squareSize: 8,
+  gap: 2,
+});
+const snake = new Snake({ board: screen.board, bgColor: "#242424" });
 let direction = "down";
+let foodPosition = screen.createFood();
+let score = 0;
 screen.draw();
 snake.draw();
 
 let allowMove = true;
 function gameTick() {
-  snake.move(direction);
+  snake.move({
+    direction,
+    foodPosition,
+    onEat() {
+      const snakePoints = snake.snake.toArray();
+      screen.dropFood(foodPosition);
+      foodPosition = screen.createFood(snakePoints);
+      score++;
+    },
+  });
   allowMove = true;
 
   const isCollision = snake.checkIsCollision();
   if (isCollision) {
-    alert("Perdel mané");
+    alert(`Fim de jogo!\nPontuação: ${score}`);
     location.reload();
   }
 }
