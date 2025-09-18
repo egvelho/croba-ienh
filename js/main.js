@@ -16,6 +16,7 @@ const snake = new Snake({ board: screen.board, bgColor: "#242424" });
 let direction = "down";
 let foodPosition = screen.createFood();
 let score = 0;
+let gameInterval;
 screen.draw();
 snake.draw();
 
@@ -35,6 +36,7 @@ function gameTick() {
 
   const isCollision = snake.checkIsCollision();
   if (isCollision) {
+    clearInterval(gameInterval);
     alert(`Fim de jogo!\nPontuação: ${score}`);
     location.reload();
   }
@@ -68,4 +70,4 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-setInterval(gameTick, GAME_SPEED);
+gameInterval = setInterval(gameTick, GAME_SPEED);
